@@ -1,7 +1,18 @@
+using Microsoft.EntityFrameworkCore;
+using MyStat.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<MyStatDbContext>(options => {
+    var connectionString = builder.Configuration.GetConnectionString("MyStatDb");
+
+    options.UseSqlServer(connectionString);
+});
+
+builder.Services.AddScoped<IHomeworkManager, HomeworkManager>();
 
 var app = builder.Build();
 
