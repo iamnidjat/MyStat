@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Homework\" />
+    <Folder Include="HtmlHelpers\" />
   </ItemGroup>
 
 </Project>

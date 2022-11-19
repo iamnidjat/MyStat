@@ -1,0 +1,26 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<link href="~/css/add.css" type="text/css" rel="stylesheet" />
+
+@model HomeworkItem
+
+<h1>Upload homework</h1>
+
+@using(Html.BeginForm())
+{
+    @Html.TextBoxFor(t => t.Title, new{
+        placeholder = "Input task's title"
+    });
+    <br/>
+    @Html.TextAreaFor(t => t.Content, new{
+        placeholder = "Input task's content"
+    });
+    <br />
+    @Html.TextBoxFor(t => t.Sent, new { @type="date", @Value = @DateTime.Now.ToString("yyyy-MM-dd") } )
+    <br />
+    <input type="submit" id="sendButton" name="sendButton" value="Send" />
+}

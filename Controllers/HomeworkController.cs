@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyStat.Models;
 using MyStat.Services;
 
 namespace MyStat.Controllers
@@ -14,7 +15,43 @@ namespace MyStat.Controllers
 
         public IActionResult Index()
         {
-            return View(_homeworkManager);
+            ViewData["HW"] = _homeworkManager.GetEnumerator();
+
+            return View();
+        }
+
+        [HttpPost]
+        [HttpGet]
+        public async Task<IActionResult> Add([FromForm] HomeworkItem? item)
+        {
+            if (HttpContext.Request.Method == HttpMethod.Get.Method || item == null)
+            {
+                return View();
+            }
+
+            await _homeworkManager.AddHWAsync(item);
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [HttpGet]
+        public async Task<IActionResult> Remove(int? id)
+        {
+            if (HttpContext.Request.Method == HttpMethod.Get.Method || id == null)
+            {
+                return View();
+            }
+
+            await _homeworkManager.RemoveHWAsync((int)id);
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Get(int? id)
+        {
+            return View(await _homeworkManager.GetProductByIdAsync(id));
         }
     }
 }

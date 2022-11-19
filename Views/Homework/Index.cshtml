@@ -1,0 +1,17 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<ol  class="roundedList">
+    @foreach (var item in (ViewData["HW"] as IEnumerable<HomeworkItem>)!)
+    {
+        <li><div>Title: @item.Title</div>
+            <div>Content: @item.Content</div>
+            <div>Sent @item.Sent</div>
+        </li>
+    }
+</ol>
+
