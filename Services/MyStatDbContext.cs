@@ -3,7 +3,7 @@ using MyStat.Models;
 
 namespace MyStat.Services
 {
-    public class MyStatDbContext :DbContext
+    public class MyStatDbContext : DbContext
     {
         public MyStatDbContext(DbContextOptions<MyStatDbContext> options) : base(options)
         {

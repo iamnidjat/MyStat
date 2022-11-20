@@ -1,17 +1,21 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@model IEnumerable<HomeworkItem>?
+
+
+@if (Model == null)
+{
+    <h1>Incorrect id!</h1>
 }
 
-
-<ol  class="roundedList">
-    @foreach (var item in (ViewData["HW"] as IEnumerable<HomeworkItem>)!)
+else
+{
+    foreach (var item in @Model)
     {
-        <li><div>Title: @item.Title</div>
-            <div>Content: @item.Content</div>
-            <div>Sent @item.Sent</div>
-        </li>
+        <div class="hwItem">
+            <div class="forRemove">
+                   <input type="button" id="removeButton" name="removeButton" value="X" />
+            </div>
+            <div class="forContent">Titlle: @item.Title <br/> Content: <br/> @item.Content</div>
+            <div class="forDate">Sent: @item.Sent</div>
+        </div>
     }
-</ol>
-
+}

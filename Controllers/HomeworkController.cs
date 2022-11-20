@@ -15,9 +15,9 @@ namespace MyStat.Controllers
 
         public IActionResult Index()
         {
-            ViewData["HW"] = _homeworkManager.GetEnumerator();
+          //  ViewData["HW"] = _homeworkManager.GetEnumerator();
 
-            return View();
+            return View(_homeworkManager);
         }
 
         [HttpPost]

@@ -17,46 +17,42 @@ body {
   margin-bottom: 60px;
 }
 
-.roundedList {
-    counter-reset: li;
-    font: 15px "Trebuchet MS", "Lucida Sans";
-    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+
+.hwItem{
+    width: 200px;
+    height: 400px;
+    border: 1px solid;
+    margin: 20px;
 }
 
-.roundedList li {
+.forRemove{
     position: relative;
-    display: block;
-    padding: .4em .4em .4em 2em;
-    margin: .5em 0;
-    background: #DAD2CA;
-    color: #444;
-    text-decoration: none;
-    border-radius: .3em;
-    transition: .3s ease-out;
+    height: 40px;
+    background-color: white;
+    border-bottom: 1px solid;
 }
 
-.roundedList li:hover {
-    background: #E9E4E0;
+.forContent {
+    position: relative;
+    height: 320px;
+    background-color: white;
+    border-bottom: 1px solid;
 }
 
-.roundedList li:hover:before {
-    transform: rotate(360deg);
+.forDate {
+    position: relative;
+    height: 40px;
+    background-color: white;
+    border-bottom: 1px solid;
 }
 
-.roundedList li:before {
-    content: counter(li);
-    counter-increment: li;
-    position: absolute;
-    left: -1.3em;
-    top: 50%;
-    margin-top: -1.3em;
-    background: #8FD4C1;
-    height: 2em;
-    width: 2em;
-    line-height: 2em;
-    border: .3em solid white;
-    text-align: center;
-    font-weight: bold;
-    border-radius: 2em;
-    transition: all .3s ease-out;
+#removeButton {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    right: -160px;
+    margin: 5px;
+    padding-left: -5px;
+    border-radius: 50%;
+    background: red;
 }
