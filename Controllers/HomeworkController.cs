@@ -15,8 +15,6 @@ namespace MyStat.Controllers
 
         public IActionResult Index()
         {
-          //  ViewData["HW"] = _homeworkManager.GetEnumerator();
-
             return View(_homeworkManager);
         }
 
@@ -52,6 +50,12 @@ namespace MyStat.Controllers
         public async Task<IActionResult> Get(int? id)
         {
             return View(await _homeworkManager.GetProductByIdAsync(id));
+        }
+
+        [HttpGet]
+        public async Task Download(string? path, [FromForm] HomeworkItem? item)
+        {
+            await _homeworkManager.DownloadHWAsync(path, item);
         }
     }
 }

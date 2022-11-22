@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyStat.Models;
 using System.Collections;
+using System.IO;
 
 namespace MyStat.Services
 {
@@ -74,6 +75,14 @@ namespace MyStat.Services
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+
+        public async Task DownloadHWAsync(string? path, HomeworkItem homeworkItem)
+        {
+            using (StreamWriter writer = new(path, true))
+            {
+                await writer.WriteAsync($"Title: {homeworkItem.Title}\n\nContent:\n{homeworkItem.Content}\n\nUpload date: {homeworkItem.Sent}");
+            }
         }
     }
 }
