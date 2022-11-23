@@ -9,6 +9,9 @@ $(function f() {
     let $removeButton = $(".removeButton");
 
     $removeButton.on("click", () => {
-
+        $.ajax(
+        {
+            url: `/Homework/Remove?id=${}`,
+        });
     });
 })
