@@ -6,12 +6,26 @@
 
 $(function f() {
 
-    let $removeButton = $(".removeButton");
+    let $removeButton = $("#removeButton");
+    let $downloadButton = $("#downloadButton");
 
     $removeButton.on("click", () => {
-        $.ajax(
-        {
-            url: `/Homework/Remove?id=${}`,
+        $.post(
+            {
+                url: `/Homework/Remove?id=${$removeButton.attr("data-id")}`,
+                success: (data) => {
+                    alert("Homework was deleted");
+                }
         });
     });
+
+    //$downloadButton.on("click", () => {
+    //    $.ajax(
+    //        {
+    //            url: `/Homework/Remove?id=${$removeButton.attr("data-id")}`,
+    //            success: (data) => {
+    //                alert("Homework was deleted");
+    //            }
+    //        });
+    //});
 })
