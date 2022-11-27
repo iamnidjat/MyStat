@@ -27,23 +27,28 @@ namespace MyStat.Controllers
                 return View();
             }
 
+            if (item.Sent < DateTime.Today || item.Title == string.Empty || item.Content == string.Empty)
+            {
+                return View();
+            }
+
             await _homeworkManager.AddHWAsync(item);
 
             return RedirectToAction("Index");
         }
 
         [HttpPost]
-        [HttpGet]
         public async Task<IActionResult> Remove(int? id)
         {
-            if (HttpContext.Request.Method == HttpMethod.Get.Method || id == null)
-            {
-                return View();
-            }
-
-            await _homeworkManager.RemoveHWAsync((int)id);
+            await _homeworkManager.RemoveHWAsync(id);
 
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Remove()
+        {
+            return View();
         }
 
         [HttpGet]

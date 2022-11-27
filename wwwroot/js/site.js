@@ -6,26 +6,5 @@
 
 $(function f() {
 
-    let $removeButton = $("#removeButton");
-    let $downloadButton = $("#downloadButton");
-
-    $removeButton.on("click", () => {
-        $.post(
-            {
-                url: `/Homework/Remove?id=${$removeButton.attr("data-id")}`,
-                success: (data) => {
-                    alert("Homework was deleted");
-                }
-        });
-    });
-
-    $downloadButton.on("click", () => {
-        $.ajax(
-            {
-                url: `/Homework/Remove?id=${$removeButton.attr("data-id")}`,
-                success: (data) => {
-                    alert("Homework was deleted");
-                }
-            });
-    });
+    
 })

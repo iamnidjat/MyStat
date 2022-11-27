@@ -79,7 +79,7 @@ namespace MyStat.Services
 
         public async Task DownloadHWAsync(string? path, HomeworkItem homeworkItem)
         {
-            using (StreamWriter writer = new(path, true))
+            using (StreamWriter writer = new(path + ".txt", true))
             {
                 await writer.WriteAsync($"Title: {homeworkItem.Title}\n\nContent:\n{homeworkItem.Content}\n\nUpload date: {homeworkItem.Sent}");
             }
