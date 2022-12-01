@@ -9,7 +9,7 @@
                 url: `/Homework/Remove?id=${$removeButton.attr("data-id")}`,
                 success: (data) => {
                     alert("Homework was deleted");
-                    $hw.remove();
+                   //$hw.remove();
                 }
             });
     });

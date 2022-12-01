@@ -22,12 +22,7 @@ namespace MyStat.Controllers
         [HttpGet]
         public async Task<IActionResult> Add([FromForm] HomeworkItem? item)
         {
-            if (HttpContext.Request.Method == HttpMethod.Get.Method || item == null)
-            {
-                return View();
-            }
-
-            if (item.Sent < DateTime.Today || item.Title == string.Empty || item.Content == string.Empty)
+            if (HttpContext.Request.Method == HttpMethod.Get.Method || item == null || item.Sent < DateTime.Today || item.Title == string.Empty || item.Content == string.Empty)
             {
                 return View();
             }
@@ -57,7 +52,7 @@ namespace MyStat.Controllers
             return View(await _homeworkManager.GetProductByIdAsync(id));
         }
 
-        [HttpGet]
+        [HttpPost]
         public async Task Download(string? path, [FromForm] HomeworkItem? item)
         {
             await _homeworkManager.DownloadHWAsync(path, item);
