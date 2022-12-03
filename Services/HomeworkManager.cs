@@ -14,19 +14,10 @@ namespace MyStat.Services
             _myStatDbContext = myStatDbContext;
         }
 
-        public async Task<bool> AddHWAsync(HomeworkItem homeworkItem)
+        public async Task AddHWAsync(HomeworkItem homeworkItem)
         {
-            try
-            {
-                await _myStatDbContext.Homeworks.AddAsync(homeworkItem);
-                await _myStatDbContext.SaveChangesAsync();
-
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            await _myStatDbContext.Homeworks.AddAsync(homeworkItem);
+            await _myStatDbContext.SaveChangesAsync();
         }
 
         public IEnumerator<HomeworkItem> GetEnumerator()
@@ -48,27 +39,15 @@ namespace MyStat.Services
             return await _myStatDbContext.Homeworks.SingleOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<bool> RemoveHWAsync(int? id)
+        public async Task RemoveHWAsync(int? id)
         {
-            try
+            var result = await GetProductByIdAsync(id);
+
+            if (result != null)
             {
-                var result = await GetProductByIdAsync(id);
+                _myStatDbContext.Homeworks.Remove(result);
 
-                if (result != null)
-                {
-                    _myStatDbContext.Homeworks.Remove(result);
-
-                    await _myStatDbContext.SaveChangesAsync();
-
-                    return true;
-                }
-
-                return false;
-            }
-
-            catch
-            {
-                return false;
+                await _myStatDbContext.SaveChangesAsync();
             }
         }
 

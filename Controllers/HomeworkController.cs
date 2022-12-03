@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyStat.Models;
 using MyStat.Services;
+using System.Threading.Tasks;
 
 namespace MyStat.Controllers
 {
@@ -37,7 +38,7 @@ namespace MyStat.Controllers
         {
             await _homeworkManager.RemoveHWAsync(id);
 
-            return RedirectToAction("Index");
+            return Ok();
         }
 
         [HttpGet]
@@ -53,9 +54,11 @@ namespace MyStat.Controllers
         }
 
         [HttpPost]
-        public async Task Download(string? path, [FromForm] HomeworkItem? item)
+        public async Task<IActionResult> Download(string? path, [FromForm] HomeworkItem? item)
         {
             await _homeworkManager.DownloadHWAsync(path, item);
+
+            return Ok();
         }
     }
 }
