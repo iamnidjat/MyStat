@@ -9,7 +9,7 @@ else
 {
     foreach (var item in Model)
     {
-        <div class="hwItem" id="@item.Id" data-item="@item.ToString()">
+        <div class="hwItem" data-item="@item.ToString()">
             <div class="forManipulations">
                 <input type="button" id="downloadButton" name="downloadButton" value="↓"/>
                 <input type="button" id="removeButton" name="removeButton" value="X" data-id="@item.Id"/>

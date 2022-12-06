@@ -34,9 +34,9 @@ namespace MyStat.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Remove(int? id)
+        public async Task<IActionResult> Remove([FromBody] HomeworkItem? item)
         {
-            await _homeworkManager.RemoveHWAsync(id);
+            await _homeworkManager.RemoveHWAsync(item.Id);
 
             return Ok();
         }
@@ -53,18 +53,12 @@ namespace MyStat.Controllers
             return View(await _homeworkManager.GetProductByIdAsync(id));
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Download(string? path, [FromForm] HomeworkItem? item)
+        [HttpGet]
+        public async Task<IActionResult> Download([FromQuery] HomeworkItem? item)
         {
-            await _homeworkManager.DownloadHWAsync(path, item);
+            await _homeworkManager.DownloadHWAsync(item);
 
             return Ok();
-        }
-
-        [HttpGet]
-        public IActionResult Download()
-        {
-            return View();
         }
     }
 }

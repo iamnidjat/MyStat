@@ -7,6 +7,6 @@ namespace MyStat.Services
         Task AddHWAsync(HomeworkItem homeworkItem);
         Task RemoveHWAsync(int? id);
         Task<HomeworkItem?> GetProductByIdAsync(int? id);
-        Task DownloadHWAsync(string? path, HomeworkItem homeworkItem);
+        Task DownloadHWAsync(HomeworkItem homeworkItem);
     }
 }

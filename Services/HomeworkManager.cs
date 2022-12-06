@@ -56,9 +56,9 @@ namespace MyStat.Services
             return GetEnumerator();
         }
 
-        public async Task DownloadHWAsync(string? path, HomeworkItem homeworkItem)
+        public async Task DownloadHWAsync(HomeworkItem homeworkItem)
         {
-            using (StreamWriter writer = new(path + ".txt", true))
+            using (StreamWriter writer = new(homeworkItem.Title + ".txt", true))
             {
                 await writer.WriteAsync($"Title: {homeworkItem.Title}\n\nContent:\n{homeworkItem.Content}\n\nUpload date: {homeworkItem.Sent.ToShortDateString()}");
             }
