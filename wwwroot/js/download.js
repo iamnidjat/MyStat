@@ -5,7 +5,7 @@
     let $forDate = $(".forDate");
     let $hw = $(".hwItem");
 
-    $downloadButton.on("click", () => {
+    $downloadButton.on("click", (e) => {
         $.ajax({
             url: `/Homework/Download`,
             type: "GET",

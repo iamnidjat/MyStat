@@ -30,7 +30,6 @@ namespace MyStat.Services
 
         public async Task<HomeworkItem?> GetProductByIdAsync(int? id)
         {
-
             if (id == null)
             {
                 return null;
