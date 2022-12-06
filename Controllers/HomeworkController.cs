@@ -60,5 +60,11 @@ namespace MyStat.Controllers
 
             return Ok();
         }
+
+        [HttpGet]
+        public IActionResult Download()
+        {
+            return View();
+        }
     }
 }

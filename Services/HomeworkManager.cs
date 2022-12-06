@@ -60,7 +60,7 @@ namespace MyStat.Services
         {
             using (StreamWriter writer = new(path + ".txt", true))
             {
-                await writer.WriteAsync($"Title: {homeworkItem.Title}\n\nContent:\n{homeworkItem.Content}\n\nUpload date: {homeworkItem.Sent}");
+                await writer.WriteAsync($"Title: {homeworkItem.Title}\n\nContent:\n{homeworkItem.Content}\n\nUpload date: {homeworkItem.Sent.ToShortDateString()}");
             }
         }
     }

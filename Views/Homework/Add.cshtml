@@ -14,7 +14,7 @@
         placeholder = "Input task's content"
     });
     <br />
-    @Html.TextBoxFor(t => t.Sent, new { @type="date", @Value = @DateTime.Now.ToString("MM/dd/yyyy") } )
+    @Html.TextBoxFor(t => t.Sent, new { @type="date", @Value = @DateTime.Now.ToShortDateString() } )
     <br />
     <input type="submit" id="sendButton" name="sendButton" value="Send" />
 }
