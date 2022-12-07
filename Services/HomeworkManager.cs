@@ -57,9 +57,11 @@ namespace MyStat.Services
 
         public async Task DownloadHWAsync(HomeworkItem homeworkItem)
         {
-            using (StreamWriter writer = new(homeworkItem.Title + ".txt", true))
+            string downloadsFolderPath = Syroot.Windows.IO.KnownFolders.Downloads.Path;
+
+            using (StreamWriter writer = new(downloadsFolderPath + "\\" + homeworkItem.Title + ".txt", true))
             {
-                await writer.WriteAsync($"Title: {homeworkItem.Title}\n\nContent:\n{homeworkItem.Content}\n\nUpload date: {homeworkItem.Sent.ToShortDateString()}");
+                await writer.WriteAsync($"Title: {homeworkItem.Title}\n\nContent:\n{homeworkItem.Content}\n\nUpload date: {homeworkItem.Sent.ToShortDateString()}\n");
             }
         }
     }

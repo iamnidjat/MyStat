@@ -6,6 +6,15 @@
     let $hw = $(".hwItem");
 
     $downloadButton.on("click", (e) => {
+
+        //let $target = $(e.originalEvent.target);
+
+        //if ($(".forManipulations").hasClass("container")) {
+        //    alert("Ok");
+        //    console.log("Ok");
+        //}
+
+
         $.ajax({
             url: `/Homework/Download`,
             type: "GET",
@@ -16,7 +25,7 @@
                 Sent: $forDate.attr("data-sent")
             },
             success: function () {
-                alert("Homework was downloaded!");
+                alert("Homework was downloaded to folder Downloads!");
             }
         });
     });
