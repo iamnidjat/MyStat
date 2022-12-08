@@ -24,9 +24,8 @@ namespace MyStat.HtmlHelpers
                 };
 
                 tag.AddCssClass("hwItem");
-                tag.GenerateId("hwItems", "_");
 
-                tag.Attributes.Add("data-item", homeworks.ToString());
+                tag.Attributes.Add("data-id", item.Id.ToString());
 
                 var newTag = new TagBuilder("div")
                 {
@@ -37,7 +36,6 @@ namespace MyStat.HtmlHelpers
 
                 var inputType = new TagBuilder("input type=\"button\"");
 
-                inputType.GenerateId("downloadButton", "_");
                 inputType.AddCssClass("downloadButtons");
 
                 inputType.Attributes.Add("name", "downloadButton");
@@ -45,7 +43,6 @@ namespace MyStat.HtmlHelpers
 
                 var newInputType = new TagBuilder("input type=\"button\"");
 
-                newInputType.GenerateId("removeButton", "_");
                 newInputType.AddCssClass("removeButtons");
 
                 newInputType.Attributes.Add("name", "removeButton");
@@ -68,6 +65,7 @@ namespace MyStat.HtmlHelpers
                 contentTag.AddCssClass("forContent");
 
                 contentTag.Attributes.Add("data-content", item.Content);
+
                 contentTag.InnerHtml.Append($"CONTENT: {item.Content}");
 
                 var sentTag = new TagBuilder("div");

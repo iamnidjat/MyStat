@@ -1,10 +1,9 @@
 ﻿$(function f()
 {
     let $removeButton = $(".removeButtons");
-    let $hw = $("#hwItems");
+    let $hw = $("[data-id]");
 
     $removeButton.on("click", (e) => {
-
         $.ajax(
             {
                 url: `/Homework/Remove`,
@@ -16,7 +15,7 @@
                 }),
                 success: (data) => {
                     alert("Homework was deleted");
-                    $hw.remove();
+                    $('div').remove("[data-id]");
                 }
             });
     });
