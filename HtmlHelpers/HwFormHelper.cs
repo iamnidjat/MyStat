@@ -55,18 +55,20 @@ namespace MyStat.HtmlHelpers
                 newTag.InnerHtml.AppendHtml(inputType);
                 newTag.InnerHtml.AppendHtml(newInputType);
 
+                var titleTag = new TagBuilder("div");
+
+                titleTag.AddCssClass("forTitle");
+
+                titleTag.Attributes.Add("data-title", item.Title);
+
+                titleTag.InnerHtml.Append($"TITLE: {item.Title}");
+
                 var contentTag = new TagBuilder("div");
 
                 contentTag.AddCssClass("forContent");
 
-                contentTag.Attributes.Add("data-title", item.Title);
                 contentTag.Attributes.Add("data-content", item.Content);
-                contentTag.InnerHtml.Append($"Title: {item.Title}");
-                contentTag.InnerHtml.AppendLine();
-                contentTag.InnerHtml.AppendLine();
-                contentTag.InnerHtml.Append("Content:");
-                contentTag.InnerHtml.AppendLine();
-                contentTag.InnerHtml.Append($"{item.Content}");
+                contentTag.InnerHtml.Append($"CONTENT: {item.Content}");
 
                 var sentTag = new TagBuilder("div");
 
@@ -76,6 +78,7 @@ namespace MyStat.HtmlHelpers
                 sentTag.InnerHtml.Append($"Sent: {item.Sent.ToShortDateString()}");
 
                 tag.InnerHtml.AppendHtml(newTag);
+                tag.InnerHtml.AppendHtml(titleTag);
                 tag.InnerHtml.AppendHtml(contentTag);
                 tag.InnerHtml.AppendHtml(sentTag);
 

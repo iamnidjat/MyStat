@@ -35,9 +35,15 @@ body {
     border-bottom: 1px solid;
 }
 
+.forTitle {
+    position: relative;
+    height: 50px;
+    background-color: white;
+}
+
 .forContent {
     position: relative;
-    height: 320px;
+    height: 270px;
     background-color: white;
     border-bottom: 1px solid;
 }

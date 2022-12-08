@@ -1,7 +1,6 @@
 ﻿$(function f()
 {
     let $removeButton = $(".removeButtons");
-   // let $hw = $(".hwItem");
     let $hw = $("#hwItems");
 
     $removeButton.on("click", (e) => {
