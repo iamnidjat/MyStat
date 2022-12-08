@@ -40,6 +40,8 @@ namespace MyStat.HtmlHelpers
 
                 inputType.Attributes.Add("name", "downloadButton");
                 inputType.Attributes.Add("value", "↓");
+                inputType.Attributes.Add("data-content", item.Content);
+                inputType.Attributes.Add("data-title", item.Title);
 
                 var newInputType = new TagBuilder("input type=\"button\"");
 
@@ -51,12 +53,11 @@ namespace MyStat.HtmlHelpers
 
                 newTag.InnerHtml.AppendHtml(inputType);
                 newTag.InnerHtml.AppendHtml(newInputType);
+                newTag.Attributes.Add("data-sent", item.Sent.ToString());
 
                 var titleTag = new TagBuilder("div");
 
                 titleTag.AddCssClass("forTitle");
-
-                titleTag.Attributes.Add("data-title", item.Title);
 
                 titleTag.InnerHtml.Append($"TITLE: {item.Title}");
 
@@ -64,15 +65,12 @@ namespace MyStat.HtmlHelpers
 
                 contentTag.AddCssClass("forContent");
 
-                contentTag.Attributes.Add("data-content", item.Content);
-
                 contentTag.InnerHtml.Append($"CONTENT: {item.Content}");
 
                 var sentTag = new TagBuilder("div");
 
                 sentTag.AddCssClass("forDate");
 
-                sentTag.Attributes.Add("data-sent", item.Sent.ToString());
                 sentTag.InnerHtml.Append($"Sent: {item.Sent.ToShortDateString()}");
 
                 tag.InnerHtml.AppendHtml(newTag);

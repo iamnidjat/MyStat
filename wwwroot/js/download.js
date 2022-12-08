@@ -1,9 +1,6 @@
 ﻿$(function f()
 {
     let $downloadButton = $(".downloadButtons");
-    let $forContent = $(".forContent");
-    let $forTitle = $(".forTitle");
-    let $forDate = $(".forDate");
 
     $downloadButton.on("click", (e) => {
         $.ajax({
@@ -11,9 +8,9 @@
             type: "GET",
             data:
             {
-                Title: $forTitle.attr("data-title"),
-                Content: $forContent.attr("data-content"),
-                Sent: $forDate.attr("data-sent")
+                Title: $(e.target).attr("data-title"),
+                Content: $(e.target).attr("data-content"),
+                Sent: $(e.target).attr("data-sent")
             },
             success: function () {
                 alert("Homework was downloaded to folder Downloads!");

@@ -23,9 +23,7 @@ body {
     height: 400px;
     border: 1px solid;
     margin: 20px;
-    display: inline-block;
-    background-color: green;
-    
+    display: inline-block;    
 }
 
 .forManipulations{
