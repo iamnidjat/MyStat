@@ -1,18 +1,17 @@
 ﻿$(function f()
 {
     let $removeButton = $("#removeButton");
-    let $hw = $(".hwItem");
+   // let $hw = $(".hwItem");
+   // let $hw = $("@item.Id");
 
     $removeButton.on("click", (e) => {
 
-        let $target = $(e.originalEvent.target);
+        let $target = $(e.target).attr('class');
 
-        //if ($target.hasClass("container")) {
-        //    alert("Ok");
-        //}
+        if (!$target.hasClass("hwItem")) {
+            alert("Ok");
+        }
 
-        alert($("div").hasClass("container"));
-        alert($target.hasClass("container"));
 
         //$.ajax(
         //    {
@@ -25,6 +24,11 @@
         //        }),
         //        success: (data) => {
         //            alert("Homework was deleted");
+        //           // $hw.not(':last-child').remove();
+        //           // $hw.removeClass('remove');
+        //          //  $(this).addClass('remove');
+        //          //  $(this).remove();
+        //          //  $hw.remove();
         //        }
         //    });
     });

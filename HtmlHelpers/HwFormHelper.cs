@@ -24,6 +24,7 @@ namespace MyStat.HtmlHelpers
                 };
 
                 tag.AddCssClass("hwItem");
+                tag.GenerateId(item.Id.ToString(), "_");
 
                 tag.Attributes.Add("data-item", homeworks.ToString());
 

@@ -14,7 +14,6 @@
         //    console.log("Ok");
         //}
 
-
         $.ajax({
             url: `/Homework/Download`,
             type: "GET",
