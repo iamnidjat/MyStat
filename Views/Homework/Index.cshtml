@@ -8,19 +8,6 @@
 
 else
 {
-  //  <div class="container">
-        @*@foreach (var item in Model)
-        {
-            <div class="hwItem" data-item="@item.ToString()">
-                <div class="forManipulations">
-                    <input type="button" id="downloadButton" name="downloadButton" value="↓"/>
-                    <input type="button" id="removeButton" name="removeButton" value="X" data-id="@item.Id"/>
-                </div>
-                <div class="forContent" data-title="@item.Title" data-content="@item.Content">Title: @item.Title <br/> <br/> Content: <br/> @item.Content</div>
-                <div class="forDate" data-sent="@item.Sent">Sent: @item.Sent.ToShortDateString()</div>
-            </div>
-        }*@
-    //</div>
     @Html.RenderHomeworks(Model);
 }
 
