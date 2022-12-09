@@ -75,7 +75,7 @@ body {
     background: lightblue;
 }
 
-#removeButton:hover, #downloadButton:hover
+.removeButtons:hover, .downloadButtons:hover
 {
     opacity: .7;
 }

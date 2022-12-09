@@ -11,14 +11,16 @@
                 type: "POST",
                 data:
                     JSON.stringify({
-                   // Id: $removeButton.data("id")
-                     Id: $(e.target).attr("data-id")
+                        Id: $(e.target).attr("data-id")
                 }),
                 success: (data) => {
                     alert("Homework was deleted");
-                    //$('div').remove("[data-id]");
-                   // $hw.closest('div').closest('div').closest('div').remove();
-                    $hw.closest('.hwItem').remove();
+                  //  $hw.closest('div').find('div:nth').remove();
+                   // alert($hw.closest('.hwItem').val());
+                   // alert($hw);
+                   // $(e.target).attr("data-id").closest('.hwItem').remove();
+                   // alert($(e.target).attr("data-id").val);
+                    $(this).parent().remove();
                 }
             });
     });
