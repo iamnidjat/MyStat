@@ -20,7 +20,7 @@
                    // alert($hw);
                    // $(e.target).attr("data-id").closest('.hwItem').remove();
                    // alert($(e.target).attr("data-id").val);
-                    $(this).parent().remove();
+                    //$(this).parent().remove();
                 }
             });
     });
