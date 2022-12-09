@@ -17,7 +17,8 @@
                 success: (data) => {
                     alert("Homework was deleted");
                     //$('div').remove("[data-id]");
-                    alert($hw);
+                   // $hw.closest('div').closest('div').closest('div').remove();
+                    $hw.closest('.hwItem').remove();
                 }
             });
     });
