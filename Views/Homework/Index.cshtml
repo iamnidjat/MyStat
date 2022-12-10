@@ -1,4 +1,5 @@
 ﻿@using MyStat.HtmlHelpers;
+@using MyStat.TagHelpers;
 @model IEnumerable<HomeworkItem>?
 
 @if (Model == null)
@@ -8,7 +9,8 @@
 
 else
 {
-    @Html.RenderHomeworks(Model);
+    //@Html.RenderHomeworks(Model);
+   <homeworks hw-list="Model" />
 }
 
 @section Scripts
