@@ -17,6 +17,8 @@ namespace MyStat.TagHelpers
         {
             output.TagName = "div";
 
+            output.TagMode = TagMode.StartTagAndEndTag;
+
             if (Homeworks == null)
             {
                 return;
@@ -33,7 +35,7 @@ namespace MyStat.TagHelpers
 
                 tag.AddCssClass("hwItem");
 
-                //tag.Attributes.Add("data-id", item.Id.ToString());
+                tag.Attributes.Add("data-id", item.Id.ToString());
 
                 var newTag = new TagBuilder("div")
                 {

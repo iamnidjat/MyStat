@@ -20,4 +20,5 @@
     background-color: rgb(72, 215, 244);
     color: white;
     border: 1px solid transparent;
+    cursor: pointer;
 }
