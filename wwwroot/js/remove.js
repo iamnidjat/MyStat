@@ -15,12 +15,7 @@
                 }),
                 success: (data) => {
                     alert("Homework was deleted");
-                  //  $hw.closest('div').find('div:nth').remove();
-                   // alert($hw.closest('.hwItem').val());
-                   // alert($hw);
-                   // $(e.target).attr("data-id").closest('.hwItem').remove();
-                   // alert($(e.target).attr("data-id").val);
-                    //$(this).parent().remove();
+                    $(e.target).parents('div').eq(1).remove();
                 }
             });
     });
