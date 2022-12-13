@@ -4,17 +4,19 @@ using Microsoft.AspNetCore.Mvc;
 using MyStat.Models;
 using MyStat.ViewModels;
 using System.Security.Claims;
+using MyStat.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace MyStat.Controllers
 {
     public class AccountController : Controller
     {
-     //   private UserContext db;
+        private MyStatDbContext _context;
 
-        //public AccountController(UserContext context)
-        //{
-        //    db = context;
-        //}
+        public AccountController(MyStatDbContext context)
+        {
+            _context = context;
+        }
 
         [HttpGet]
         public IActionResult Login()
@@ -28,43 +30,47 @@ namespace MyStat.Controllers
         {
             if (ModelState.IsValid)
             {
-                //User user = await db.Users.FirstOrDefaultAsync(u => u.Email == model.Email && u.Password == model.Password);
-                //if (user != null)
-                //{
-                //    await Authenticate(model.UserName); // аутентификация
+                User user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == model.UserName && u.Password == model.Password);
+                
+                if (user != null)
+                {
+                    await Authenticate(model.UserName); // аутентификация
 
-                //    return RedirectToAction("Index", "Home");
-                //}
+                    return RedirectToAction("Index", "Home");
+                }
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
             return View(model);
         }
+
         [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterModel model)
         {
             if (ModelState.IsValid)
             {
-                //User user = await db.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
-                //if (user == null)
-                //{
-                //    // добавляем пользователя в бд
-                //    db.Users.Add(new User { Email = model.Email, Password = model.Password });
-                //    await db.SaveChangesAsync();
+                User user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == model.UserName);
 
-                //    await Authenticate(model.Email); // аутентификация
+                if (user == null)
+                {
+                    // добавляем пользователя в бд
+                    _context.Users.Add(new User { UserName = model.UserName, Password = model.Password });
+                    await _context.SaveChangesAsync();
 
-                //    return RedirectToAction("Index", "Home");
-                //}
-                //else
-                //{
-                //    ModelState.AddModelError("", "Некорректные логин и(или) пароль");
-                //}
+                    await Authenticate(model.UserName); // аутентификация
+
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+                }
             }
             return View(model);
         }
