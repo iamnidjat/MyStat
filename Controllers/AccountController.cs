@@ -38,8 +38,10 @@ namespace MyStat.Controllers
 
                     return RedirectToAction("Index", "Home");
                 }
+
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
+
             return View(model);
         }
 
@@ -61,6 +63,7 @@ namespace MyStat.Controllers
                 {
                     // добавляем пользователя в бд
                     _context.Users.Add(new User { UserName = model.UserName, Password = model.Password });
+
                     await _context.SaveChangesAsync();
 
                     await Authenticate(model.UserName); // аутентификация
@@ -72,6 +75,7 @@ namespace MyStat.Controllers
                     ModelState.AddModelError("", "Некорректные логин и(или) пароль");
                 }
             }
+
             return View(model);
         }
 

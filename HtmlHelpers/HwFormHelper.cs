@@ -25,8 +25,6 @@ namespace MyStat.HtmlHelpers
 
                 tag.AddCssClass("hwItem");
 
-                //tag.Attributes.Add("data-id", item.Id.ToString());
-
                 var newTag = new TagBuilder("div")
                 {
                     TagRenderMode = TagRenderMode.Normal

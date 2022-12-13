@@ -1,7 +1,6 @@
 ﻿$(function f()
 {
     let $removeButton = $(".removeButtons");
-    let $hw = $("[data-id]");
 
     $removeButton.on("click", (e) => {
         $.ajax(

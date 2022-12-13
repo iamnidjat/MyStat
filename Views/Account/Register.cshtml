@@ -14,16 +14,31 @@
         </div>
         <div>
             <label asp-for="Password">Введите пароль</label><br />
-            @Html.TextBoxFor(t => t.Password)
+            @Html.TextBoxFor(t => t.Password, new
+            {
+                type = "Password"
+            })
             <span asp-validation-for="Password" />
         </div>
         <div>
             <label asp-for="ConfirmPassword">Повторите пароль</label><br />
-            @Html.TextBoxFor(t => t.ConfirmPassword)
+            @Html.TextBoxFor(t => t.ConfirmPassword, new{
+                type = "Password"
+            })
             <span asp-validation-for="ConfirmPassword" />
+        </div>
+        <div class="showPassword">
+            <label>
+                @Html.CheckBox("showPassword", false) Show Password
+            </label>
         </div>
         <div>
             <input type="submit" value="Регистрация" class="submitButton" />
         </div>
     </div>
+}
+
+@section Scripts
+{
+    <script src="~/js/register.js"></script>
 }
