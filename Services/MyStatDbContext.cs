@@ -11,5 +11,6 @@ namespace MyStat.Services
         }
 
         public DbSet<HomeworkItem> Homeworks { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

@@ -17,5 +17,9 @@ namespace MyStat.Models
 
         [Required]
         public DateTime Sent { get; set; }
+
+        public int UserId { get; set; }
+
+        public User? User { get; set; }
     }
 }
