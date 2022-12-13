@@ -18,11 +18,6 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         {
             options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
         });
-//builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-//    .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme,
-//        options => builder.Configuration.Bind("JwtSettings", options))
-//    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
-//        options => builder.Configuration.Bind("CookieSettings", options));
 
 builder.Services.AddScoped<IHomeworkManager, HomeworkManager>();
 

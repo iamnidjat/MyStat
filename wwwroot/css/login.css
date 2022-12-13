@@ -1,2 +1,22 @@
 ﻿body {
 }
+
+
+#UserName {
+    margin-bottom: 10px;
+}
+
+#Password {
+    margin-bottom: 10px;
+    margin-left: 80px;
+}
+
+.submitButton
+{
+    margin-left: 300px;
+    width: 110px;
+}
+
+.redirect {
+    margin-left: 100px;
+}
