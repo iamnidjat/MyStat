@@ -1,13 +1,16 @@
 ﻿$(function f() {
-    let $checkbox = $('#showPassword')
-    let $text = $('#Password')
+    let $text = $('#Password');
 
-    if ($checkbox.is(":checked")) {
-        $text.attr("Type", "Text");
-        alert("5");
-    }
-    else {
-        $text.attr("Type", "Password");
-        alert("Checkbox Is not checked");
-    }
+    $(document).ready(function () {
+        $('#show_password').hover(function show() {
+            //Change the attribute to text
+            $text.attr('type', 'text');
+            $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+        },
+        function () {
+            //Change the attribute back to password
+            $text.attr('type', 'password');
+            $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+        });
+    });
 })

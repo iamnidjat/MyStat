@@ -14,10 +14,6 @@ namespace MyStat.Controllers
             _logger = logger;
         }
 
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
         [Authorize]
         public IActionResult Index()
         {

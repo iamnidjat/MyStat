@@ -1,6 +1,5 @@
 ﻿@model MyStat.ViewModels.RegisterModel
 
-<link href="~/css/register.css" type="text/css" rel="stylesheet" />
 
 <h2>Регистрация</h2>
 
@@ -19,6 +18,11 @@
                 type = "Password"
             })
             <span asp-validation-for="Password" />
+            <div class="input-group-append">
+                <button id="show_password" class="btn btn-primary" type="button">
+                    <span class="fa fa-eye-slash icon"></span>
+                </button>
+            </div>
         </div>
         <div>
             <label asp-for="ConfirmPassword">Повторите пароль</label><br />
@@ -26,11 +30,11 @@
                 type = "Password"
             })
             <span asp-validation-for="ConfirmPassword" />
-        </div>
-        <div class="showPassword">
-            <label>
-                @Html.CheckBox("showPassword", false) Show Password
-            </label>
+            <div class="input-group-append">
+                <button id="show_password2" class="btn btn-primary" type="button">
+                    <span class="fa fa-eye-slash icon"></span>
+                </button>
+            </div>
         </div>
         <div>
             <input type="submit" value="Регистрация" class="submitButton" />
@@ -41,4 +45,11 @@
 @section Scripts
 {
     <script src="~/js/register.js"></script>
+}
+
+@section Styles
+{
+    <link href="~/css/register.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 }

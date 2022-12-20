@@ -1,7 +1,5 @@
 ﻿@model HomeworkItem
 
-<link href="~/css/add.css" type="text/css" rel="stylesheet" />
-
 <h1>Upload homework</h1>
 
 @using(Html.BeginForm())
@@ -17,4 +15,9 @@
     @Html.TextBoxFor(t => t.Sent, new { @type="date", @Value = @DateTime.Now.ToShortDateString() } )
     <br />
     <input type="submit" id="sendButton" name="sendButton" value="Send" />
+}
+
+@section Styles
+{
+    <link href="~/css/add.css" type="text/css" rel="stylesheet" />
 }
