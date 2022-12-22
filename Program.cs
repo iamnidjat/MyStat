@@ -16,10 +16,12 @@ builder.Services.AddDbContext<MyStatDbContext>(options => {
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options => //CookieAuthenticationOptions
     {
-        options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+        options.LoginPath = new PathString("/Account/Login");
+        options.LogoutPath = new PathString("/Account/Logout");
+        options.ExpireTimeSpan = TimeSpan.FromDays(365); //
     });
 
-builder.Services.AddScoped<IHomeworkManager, HomeworkManager>();
+builder.Services.AddTransient<IHomeworkManager, HomeworkManager>();
 
 var app = builder.Build();
 
@@ -41,6 +43,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Account}/{action=Login}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

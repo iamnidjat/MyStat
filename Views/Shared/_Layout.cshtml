@@ -26,18 +26,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Homework" asp-action="Add">Upload</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Homework" asp-action="Index">Homeworks</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
-                        </li>
-
-
-                       @* @{
+                        @{
                             var userIdentity = Context.User.Identity;
 
                             if (userIdentity != null && userIdentity.IsAuthenticated)
@@ -54,9 +43,14 @@
                             }
                             else
                             {
-                                
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+                                </li>
                             }
-                        }*@
+                        }
                     </ul>
                 </div>
             </div>
