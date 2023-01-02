@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MyStat.Models;
 using MyStat.Services;
 using System.Threading.Tasks;
 
 namespace MyStat.Controllers
 {
+    [Authorize]
     public class HomeworkController : Controller
     {
         private readonly IHomeworkManager _homeworkManager;
@@ -47,6 +49,8 @@ namespace MyStat.Controllers
             return View();
         }
 
+
+        //
         [HttpGet]
         public async Task<IActionResult> Get(int? id)
         {

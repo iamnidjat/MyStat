@@ -7,6 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+
+builder.Services.AddTransient<IHomeworkManager, HomeworkManager>();
+
 builder.Services.AddDbContext<MyStatDbContext>(options => {
     var connectionString = builder.Configuration.GetConnectionString("MyStatDb");
 
@@ -21,7 +24,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.ExpireTimeSpan = TimeSpan.FromDays(365); //
     });
 
-builder.Services.AddTransient<IHomeworkManager, HomeworkManager>();
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -39,10 +42,11 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Account}/{action=Login}/{id?}");
 
 app.Run();

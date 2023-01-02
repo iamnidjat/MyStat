@@ -5,6 +5,7 @@ using System.Diagnostics;
 
 namespace MyStat.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -14,10 +15,14 @@ namespace MyStat.Controllers
             _logger = logger;
         }
 
-        [Authorize]
+        [AllowAnonymous]
         public IActionResult Index()
         {
-            return Content(User.Identity.Name);
+            if (User.Identity.IsAuthenticated)
+            {
+                return Content(User.Identity.Name);
+            }
+            return Content("Not Authenticated");
         }
 
         public IActionResult Privacy()

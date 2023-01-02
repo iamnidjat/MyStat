@@ -4,6 +4,7 @@
 
 @using(Html.BeginForm())
 {
+    @Html.HiddenFor(t => t.Id);
     @Html.TextBoxFor(t => t.Title, new{
         placeholder = "Input task's title"
     });

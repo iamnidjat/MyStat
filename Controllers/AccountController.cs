@@ -6,9 +6,11 @@ using MyStat.ViewModels;
 using System.Security.Claims;
 using MyStat.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MyStat.Controllers
 {
+
     public class AccountController : Controller
     {
         private MyStatDbContext _context;
@@ -26,7 +28,7 @@ namespace MyStat.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginModel? model)
+        public async Task<IActionResult> Login([FromForm] LoginModel? model)
         {
             if (ModelState.IsValid)
             {
@@ -36,7 +38,7 @@ namespace MyStat.Controllers
                 {
                     await Authenticate(model.UserName); // аутентификация
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Add", "Homework");
                 }
 
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
@@ -53,7 +55,7 @@ namespace MyStat.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterModel model)
+        public async Task<IActionResult> Register([FromForm] RegisterModel model)
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +69,7 @@ namespace MyStat.Controllers
 
                     await Authenticate(model.UserName);
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Add", "Homework");
                 }
                 else
                 {
@@ -85,7 +87,7 @@ namespace MyStat.Controllers
                 new Claim(ClaimsIdentity.DefaultNameClaimType, userName)
             };
 
-            ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
+            ClaimsIdentity id = new (claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
         }

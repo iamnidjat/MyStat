@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,8 +15,9 @@ namespace MyStat.Models
         public string? UserName { get; set; }
 
         [Required]
+        [MinLength(6)]
         public string? Password { get; set; }
 
-        public ObservableCollection<HomeworkItem> Homeworks { get; set; } = new();
+        public ICollection<HomeworkItem> Homeworks { get; set; } = new ObservableCollection<HomeworkItem>();
     }
 }
