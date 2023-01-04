@@ -2,9 +2,12 @@
 
 <h1>Upload homework</h1>
 
+<div>@TempData["UserId"]</div>
+
 @using(Html.BeginForm())
 {
-    @Html.HiddenFor(t => t.Id);
+   // @Html.HiddenFor(t => t.UserId);
+    @Html.DropDownListFor(model => model.UserId, ViewBag.Users as SelectList, "Select film...");
     @Html.TextBoxFor(t => t.Title, new{
         placeholder = "Input task's title"
     });

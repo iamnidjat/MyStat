@@ -20,12 +20,24 @@ namespace MyStat.Services
             await _myStatDbContext.SaveChangesAsync();
         }
 
-        public IEnumerator<HomeworkItem> GetEnumerator()
+        public IEnumerable<HomeworkItem> GetItems()
         {
-            foreach (var item in _myStatDbContext.Homeworks)
-            {
-                yield return item;
-            }
+            //foreach (var item in _myStatDbContext.Homeworks)
+            //{
+            //    yield return item;
+            //}
+
+            return _myStatDbContext.Homeworks.Include(t => t.User).ToList();
+        }
+
+        public IEnumerable<User> GetUsers()
+        {
+            //foreach (var item in _myStatDbContext.Homeworks)
+            //{
+            //    yield return item;
+            //}
+
+            return _myStatDbContext.Users.ToList();
         }
 
         public async Task<HomeworkItem?> GetProductByIdAsync(int? id)
@@ -50,10 +62,10 @@ namespace MyStat.Services
             }
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        //IEnumerator IEnumerable.GetEnumerator()
+        //{
+        //    return GetEnumerator();
+        //}
 
         public async Task DownloadHWAsync(HomeworkItem homeworkItem)
         {

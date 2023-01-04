@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using MyStat.Services;
 
@@ -24,7 +25,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.ExpireTimeSpan = TimeSpan.FromDays(365); //
     });
 
-builder.Services.AddAuthorization();
+//builder.Services.AddAuthorization();
 
 var app = builder.Build();
 

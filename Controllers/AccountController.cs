@@ -6,11 +6,10 @@ using MyStat.ViewModels;
 using System.Security.Claims;
 using MyStat.Services;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authorization;
+using MyStat.Extensions;
 
 namespace MyStat.Controllers
 {
-
     public class AccountController : Controller
     {
         private MyStatDbContext _context;
@@ -38,7 +37,9 @@ namespace MyStat.Controllers
                 {
                     await Authenticate(model.UserName); // аутентификация
 
-                    return RedirectToAction("Add", "Homework");
+                    TempData.Put("UserId", user);
+
+                    return RedirectToAction("Add", "Homework");   
                 }
 
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");

@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MyStat.Models;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace MyStat.Controllers
 {
