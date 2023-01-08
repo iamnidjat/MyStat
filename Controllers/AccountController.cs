@@ -6,7 +6,6 @@ using MyStat.ViewModels;
 using System.Security.Claims;
 using MyStat.Services;
 using Microsoft.EntityFrameworkCore;
-using MyStat.Extensions;
 
 namespace MyStat.Controllers
 {
@@ -37,7 +36,7 @@ namespace MyStat.Controllers
                 {
                     await Authenticate(model.UserName); // аутентификация
 
-                    TempData.Put("UserId", user);
+
 
                     return RedirectToAction("Add", "Homework");   
                 }
