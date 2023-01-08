@@ -19,8 +19,21 @@ namespace MyStat.Controllers
         }
 
         [HttpGet]
-        public IActionResult Login()
+        public async Task<IActionResult> Login()
         {
+            //var claim = HttpContext.User.Claims.FirstOrDefault(u => u.Type == ClaimsIdentity.DefaultNameClaimType);
+
+            //if (claim != null)
+            //{
+            //    User user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == claim.Value);
+
+
+            //    if (user != null)
+            //    {
+            //        ViewBag.UserId = user.Id;
+            //    }
+            //}
+
             return View();
         }
 
@@ -34,11 +47,17 @@ namespace MyStat.Controllers
                 
                 if (user != null)
                 {
-                    await Authenticate(model.UserName); // аутентификация
+                    await Authenticate(user); // аутентификация
 
 
+                    //  var userId = _context.Users.Where(x => x.UserName == User.Identity.Name).Select(x => x.Id).FirstOrDefault();
 
-                    return RedirectToAction("Add", "Homework");   
+                    ViewBag.UserId = user.Id;
+
+                    return RedirectToAction("Add", "Homework", routeValues: new
+                    {
+                        Id = user.Id
+                    });   
                 }
 
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
@@ -67,7 +86,7 @@ namespace MyStat.Controllers
 
                     await _context.SaveChangesAsync();
 
-                    await Authenticate(model.UserName);
+                    await Authenticate(user);
 
                     return RedirectToAction("Add", "Homework");
                 }
@@ -80,11 +99,12 @@ namespace MyStat.Controllers
             return View(model);
         }
 
-        private async Task Authenticate(string userName)
+        private async Task Authenticate(User user)
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, userName)
+                new Claim(ClaimsIdentity.DefaultNameClaimType, user.UserName),
+                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Id.ToString())
             };
 
             ClaimsIdentity id = new (claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
