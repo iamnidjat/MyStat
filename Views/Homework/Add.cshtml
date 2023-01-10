@@ -1,5 +1,4 @@
-﻿@*@model HomeworkItem*@
-@model MyStat.ViewModels.UserViewModel
+﻿@model MyStat.ViewModels.UserViewModel
 
 
 <h1>Upload homework</h1>
@@ -11,7 +10,6 @@
 @using(Html.BeginForm())
 {
     @Html.HiddenFor(t => t.user.Id);
-   // @Html.DropDownListFor(model => model.UserId, ViewBag.Users as SelectList, "Select film...");
     @Html.TextBoxFor(t => t.homeWork.Title, new{
         placeholder = "Input task's title"
     });

@@ -27,21 +27,15 @@ namespace MyStat.Controllers
         [HttpGet]
         public async Task<IActionResult> Add([FromForm] HomeworkItem? item, int userId)
         {
-            UserViewModel user = new()
-            {
-                user = new()
-                {
-                    Id = userId
-                }
-            };
-
-            SelectList users = new(_homeworkManager.GetUsers(), "Id", "UserName");
-            ViewBag.Users = users;
-
             if (HttpContext.Request.Method == HttpMethod.Get.Method || item == null || item.Sent < DateTime.Today || item.Title == string.Empty || item.Content == string.Empty)
             {
-               // UserViewModel userId = TempData["UserId"] as UserViewModel;
-                return View(user);
+                return View(new UserViewModel
+                {
+                    user = new()
+                    {
+                        Id = userId
+                    }
+                });
             }
 
             await _homeworkManager.AddHWAsync(item);

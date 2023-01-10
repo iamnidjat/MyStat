@@ -6,6 +6,7 @@ using MyStat.ViewModels;
 using System.Security.Claims;
 using MyStat.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MyStat.Controllers
 {
@@ -33,6 +34,10 @@ namespace MyStat.Controllers
             //        ViewBag.UserId = user.Id;
             //    }
             //}
+            //if (User.Identity.IsAuthenticated)
+            //{
+            //    return 
+            //}
 
             return View();
         }
@@ -47,10 +52,7 @@ namespace MyStat.Controllers
                 
                 if (user != null)
                 {
-                    await Authenticate(user); // аутентификация
-
-                    //  ViewBag.UserId = user.Id;
-                    //TempData["UserId"] = user;
+                    await Authenticate(user);
 
                     return RedirectToAction("Add", "Homework", routeValues: new
                     {
