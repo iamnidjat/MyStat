@@ -1,4 +1,6 @@
-﻿@model HomeworkItem
+﻿@*@model HomeworkItem*@
+@model MyStat.ViewModels.UserViewModel
+
 
 <h1>Upload homework</h1>
 
@@ -8,17 +10,17 @@
 
 @using(Html.BeginForm())
 {
-   // @Html.HiddenFor(t => t.UserId);
+    @Html.HiddenFor(t => t.user.Id);
    // @Html.DropDownListFor(model => model.UserId, ViewBag.Users as SelectList, "Select film...");
-    @Html.TextBoxFor(t => t.Title, new{
+    @Html.TextBoxFor(t => t.homeWork.Title, new{
         placeholder = "Input task's title"
     });
     <br/>
-    @Html.TextAreaFor(t => t.Content, new{
+    @Html.TextAreaFor(t => t.homeWork.Content, new{
         placeholder = "Input task's content"
     });
     <br />
-    @Html.TextBoxFor(t => t.Sent, new { @type="date", @Value = @DateTime.Now.ToShortDateString() } )
+    @Html.TextBoxFor(t => t.homeWork.Sent, new { @type="date", @Value = @DateTime.Now.ToShortDateString() } )
     <br />
     <input type="submit" id="sendButton" name="sendButton" value="Send" />
 }

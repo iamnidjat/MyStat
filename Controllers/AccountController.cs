@@ -49,14 +49,12 @@ namespace MyStat.Controllers
                 {
                     await Authenticate(user); // аутентификация
 
-
-                    //  var userId = _context.Users.Where(x => x.UserName == User.Identity.Name).Select(x => x.Id).FirstOrDefault();
-
-                    ViewBag.UserId = user.Id;
+                    //  ViewBag.UserId = user.Id;
+                    //TempData["UserId"] = user;
 
                     return RedirectToAction("Add", "Homework", routeValues: new
                     {
-                        Id = user.Id
+                        userId = user.Id
                     });   
                 }
 
@@ -104,7 +102,7 @@ namespace MyStat.Controllers
             var claims = new List<Claim>
             {
                 new Claim(ClaimsIdentity.DefaultNameClaimType, user.UserName),
-                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Id.ToString())
+                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Id.ToString())//
             };
 
             ClaimsIdentity id = new (claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
