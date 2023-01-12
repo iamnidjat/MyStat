@@ -20,14 +20,13 @@ namespace MyStat.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Login()
+        public IActionResult Login()
         {
             //var claim = HttpContext.User.Claims.FirstOrDefault(u => u.Type == ClaimsIdentity.DefaultNameClaimType);
 
             //if (claim != null)
             //{
             //    User user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == claim.Value);
-
 
             //    if (user != null)
             //    {
@@ -52,7 +51,7 @@ namespace MyStat.Controllers
                 
                 if (user != null)
                 {
-                    await Authenticate(user);
+                    await Authenticate(model.UserName);
 
                     return RedirectToAction("Add", "Homework", routeValues: new
                     {
@@ -82,11 +81,15 @@ namespace MyStat.Controllers
 
                 if (user == null)
                 {
-                    _context.Users.Add(new User { UserName = model.UserName, Password = model.Password });
+                    _context.Users.Add(new User 
+                        { 
+                            UserName = model.UserName, 
+                            Password = model.Password 
+                        });
 
                     await _context.SaveChangesAsync();
 
-                    await Authenticate(user);
+                    await Authenticate(model.UserName);
 
                     return RedirectToAction("Add", "Homework");
                 }
@@ -99,16 +102,16 @@ namespace MyStat.Controllers
             return View(model);
         }
 
-        private async Task Authenticate(User user)
+        private async Task Authenticate(string userName)
         {
+            // создаем один claim
             var claims = new List<Claim>
             {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, user.UserName),
-                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Id.ToString())//
+                new Claim(ClaimsIdentity.DefaultNameClaimType, userName)
             };
-
+            // создаем объект ClaimsIdentity
             ClaimsIdentity id = new (claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
-
+            // установка аутентификационных куки
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
         }
 

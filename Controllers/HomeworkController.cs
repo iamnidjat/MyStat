@@ -23,24 +23,41 @@ namespace MyStat.Controllers
             return View(_homeworkManager);
         }
 
-        [HttpPost]
         [HttpGet]
-        public async Task<IActionResult> Add([FromForm] HomeworkItem? item, int userId)
+        public async Task<IActionResult> Add(int userId)
         {
-            if (HttpContext.Request.Method == HttpMethod.Get.Method || item == null || item.Sent < DateTime.Today || item.Title == string.Empty || item.Content == string.Empty)
+            return View(new UserViewModel
             {
-                return View(new UserViewModel
+                user = new()
                 {
-                    user = new()
-                    {
-                        Id = userId
-                    }
-                });
+                    Id = userId
+                }
+            });
+        }
+
+        //[HttpPost]
+        //public async Task<IActionResult> Add([FromForm] HomeworkItem? item)
+        //{
+        //    if (item == null || item.Sent < DateTime.Today || item.Title == string.Empty || item.Content == string.Empty)
+        //    {
+        //        return BadRequest();
+        //    }
+
+        //    await _homeworkManager.AddHWAsync(item);
+
+        //    return RedirectToAction("Index", "Homework");
+        //}
+        [HttpPost]
+        public async Task<IActionResult> Add([FromForm] UserViewModel homeworkItem)
+        {
+            if (homeworkItem == null || homeworkItem.homeWork.Sent < DateTime.Today || homeworkItem.homeWork.Title == string.Empty || homeworkItem.homeWork.Content == string.Empty)
+            {
+                return BadRequest();
             }
 
-            await _homeworkManager.AddHWAsync(item);
+            await _homeworkManager.AddHWAsync(homeworkItem.homeWork);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Homework");
         }
 
         [HttpPost]
@@ -59,11 +76,11 @@ namespace MyStat.Controllers
 
 
         //
-        [HttpGet]
-        public async Task<IActionResult> Get(int? id)
-        {
-            return View(await _homeworkManager.GetProductByIdAsync(id));
-        }
+        //[HttpGet]
+        //public async Task<IActionResult> Get(int? id)
+        //{
+        //    return View(await _homeworkManager.GetProductByIdAsync(id));
+        //}
 
         [HttpGet]
         public async Task<IActionResult> Download([FromQuery] HomeworkItem? item)
